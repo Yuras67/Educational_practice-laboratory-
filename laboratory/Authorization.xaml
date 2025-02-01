@@ -5,11 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:laboratory"
         mc:Ignorable="d"
-        Title="Authorization" Height="450" Width="800" Icon="resourses/logo.png"
+        Title="Авторизация" 
+        Icon="resourses/logo.png"
+        Height="450" 
+        Width="800"
         MinHeight="300"
         MinWidth="450"
         MaxHeight="750"
         MaxWidth="1150">
+
+    <Window.Resources>
+        <ControlTemplate 
+            x:Key="NoMouseOverButtonTemplate"   
+            TargetType="Button">
+            <Border 
+                Background="{TemplateBinding Background}"  
+                BorderBrush="{TemplateBinding BorderBrush}"  
+                BorderThickness="{TemplateBinding BorderThickness}">
+                <ContentPresenter 
+                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"  
+                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger 
+                    Property="IsEnabled"  
+                    Value="False">
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </Window.Resources>
+
     <Viewbox Stretch="Uniform">
         <Grid MinHeight="300" 
               MinWidth="450" 
@@ -18,73 +43,149 @@
               MaxHeight="750" 
               MaxWidth="1150">
             <Grid.RowDefinitions>
-                <RowDefinition Height="40*"/>
-                <RowDefinition Height="70*"/>
-                <RowDefinition Height="70*"/>
-                <RowDefinition Height="66*"/>
-                <RowDefinition Height="46*"/>
+                <RowDefinition Height="41*"/>
+                <RowDefinition Height="73*"/>
+                <RowDefinition Height="73*"/>
+                <RowDefinition Height="63"/>
+                <RowDefinition Height="53*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="137*"/>
-                <ColumnDefinition Width="179*"/>
-                <ColumnDefinition Width="134*"/>
+                <ColumnDefinition Width="80*"/>
+                <ColumnDefinition Width="150*"/>
+                <ColumnDefinition Width="80*"/>
             </Grid.ColumnDefinitions>
-            <Button Content="Войти" 
-                    HorizontalAlignment="Center" 
-                    VerticalAlignment="Top"
-                    Width="100" 
-                    FontSize="15" 
-                    Background="#FF468C50"
-                    Grid.Column="1" 
-                    Grid.Row="4" 
-                    Height="32" FontFamily="Calibri" Foreground="White" Margin="0,4,0,0"/>
-            
-            <PasswordBox x:Name="Password" 
-                         HorizontalAlignment="Center"
-                         VerticalAlignment="Center" 
-                         Width="170" 
-                         Height="30"
-                         FontSize="20" 
-                         Grid.Column="1" 
-                         MaxLength="15"
-                         Grid.Row="2" Background="#FF6EDC80"
-                         PasswordChar='*'/>
-            <Label Content="Вход" 
-                   HorizontalAlignment="Center" 
-                   VerticalAlignment="Center" 
-                   FontSize="30"
-                   Height="50" 
-                   Width="74" 
-                   Grid.Column="1" FontFamily="Calibri"/>
+            <Button 
+                x:Name="Login_In_Button"
+                Content="Войти" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center"
+                Width="100" 
+                FontSize="15" 
+                Background="#FF468C50"
+                Grid.Column="1" 
+                Grid.Row="4" 
+                Height="32" 
+                FontFamily="Calibri"
+                Foreground="White" 
+                Click="Button_Click_Enter"/>
+            <PasswordBox 
+                x:Name="Password"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top" 
+                Width="190" 
+                Height="30"
+                FontSize="20" 
+                Grid.Column="1" 
+                Grid.Row="2"
+                MaxLength="15"
+                FontFamily="Calibri"
+                Background="#FF6EDC80"
+                Margin="0,30,0,0"/>
+            <TextBox    
+                x:Name="PasswordText"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Width="190" 
+                Height="30"
+                FontSize="20" 
+                MaxLength="15"
+                Grid.Row="2" 
+                Grid.Column="1" 
+                FontFamily="Calibri"
+                Background="#FF6EDC80"
+                Visibility="Collapsed"
+                Margin="0,30,0,0"/>
+            <Label 
+                Content="Вход" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center" 
+                FontSize="30"
+                Height="50" 
+                Width="74" 
+                Grid.Column="1" 
+                FontFamily="Calibri"/>
             <TextBox x:Name="Login" 
                      HorizontalAlignment="Center" 
                      TextWrapping="Wrap" 
-                     VerticalAlignment="Center" 
-                     Width="170"
+                     VerticalAlignment="Top" 
+                     Width="190"
                      Height="30"
                      FontSize="20" 
                      Grid.Row="1"
                      MaxLength="15"
-                     Grid.Column="1" Background="#FF6EDC82"/>
+                     Grid.Column="1" 
+                     Background="#FF6EDC82" 
+                     Margin="0,30,0,0"/>
             <Label Content="Логин" 
                    HorizontalAlignment="Center"
                    VerticalAlignment="Top" 
-                   Width="158" Height="25"
+                   Width="170" 
+                   Height="30"
+                   Grid.Column="1"
                    Grid.Row="1"
-                   Grid.Column="1" FontFamily="Calibri"/>
+                   FontFamily="Calibri"
+                   FontSize="20"/>
             <Label Content="Пароль"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Top" 
-                   Width="159" Height="25" 
+                   Width="170" 
+                   Height="30"
+                   FontSize="20"
                    Grid.Row="2"
-                   Grid.Column="1" FontFamily="Calibri"/>
-            <Image Grid.Column="1" Margin="146,24,7,24" Grid.Row="2" Source="/Resourses/invisible_pas.png" Stretch="Fill"/>
-            <Button Grid.Column="1" HorizontalAlignment="Left" Margin="105,0,0,0" Grid.Row="2" VerticalAlignment="Center" Height="27" Width="34" BorderBrush="#00000000" Click="Button_Click" Foreground="#00000000" OpacityMask="Black">
-                <Button.Background>
-                    <ImageBrush ImageSource="/free-icon-eye-8692940.png" TileMode="Tile" Stretch="Fill"/>
-                </Button.Background>
+                   Grid.Column="1" 
+                   FontFamily="Calibri"/>
+            <Button x:Name="ShowPas"
+                    Grid.Column="1"                     
+                    Grid.Row="2" 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Top" 
+                    Margin="168,32,0,0" 
+                    Height="26" 
+                    Width="34" 
+                    BorderBrush="#00000000" 
+                    Click="Show_Password_Click" 
+                    Foreground="#00000000" 
+                    Template="{StaticResource NoMouseOverButtonTemplate}" 
+                    Background="{x:Null}">
+                <Image Name="Image" 
+                       Source="/Resourses/invisible_pas.png" 
+                       Stretch="Fill"/>
             </Button>
 
+            <StackPanel 
+                Visibility="Collapsed"
+                Name="CaptchaPanel" 
+                Grid.Row="3" 
+                Margin="116,0,116,0"
+                Grid.ColumnSpan="3">
+                <TextBlock 
+                    x:Name="CaptchaTextBlock" 
+                    FontSize="25" 
+                    FontWeight="Bold"
+                    Width="111" 
+                    Height="33" 
+                    FontFamily="Calibri" 
+                    TextAlignment="Center" 
+                    Foreground="#FF828282" />
+                <TextBox 
+                    x:Name="CaptchaTextBox" 
+                    Width="100" 
+                    Height="26"/>
+                <Button
+                    x:Name="Update_Captcha" 
+                    Height="26" 
+                    Width="34" 
+                    BorderBrush="#00000000" 
+                    Margin="150,-90,0,0" 
+                    Click="Update_Captcha_Click" 
+                    Foreground="#00000000" 
+                    Template="{StaticResource NoMouseOverButtonTemplate}" 
+                    Background="{x:Null}">
+                    <Image x:Name="Update_Captcha_gif" 
+                       Source="/Resourses/loader.gif" 
+                       Stretch="Fill"/>
+                </Button>
+            </StackPanel>
         </Grid>
     </Viewbox>
 </Window>

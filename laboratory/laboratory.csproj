@@ -35,8 +35,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,6 +64,63 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Analyzers.cs">
+      <DependentUpon>DB_Laboratory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Bloods.cs">
+      <DependentUpon>DB_Laboratory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Blood_Services.cs">
+      <DependentUpon>DB_Laboratory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Completed_services.cs">
+      <DependentUpon>DB_Laboratory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB_Laboratory.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB_Laboratory.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB_Laboratory.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB_Laboratory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB_Laboratory.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB_Laboratory.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Insurance_Сompanies.cs">
+      <DependentUpon>DB_Laboratory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Orders.cs">
+      <DependentUpon>DB_Laboratory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Patients.cs">
+      <DependentUpon>DB_Laboratory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services.cs">
+      <DependentUpon>DB_Laboratory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>DB_Laboratory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Users.cs">
+      <DependentUpon>DB_Laboratory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Users_Window\Accountant_Window.xaml.cs">
+      <DependentUpon>Accountant_Window.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Users_Window\Admin_Window.xaml.cs">
+      <DependentUpon>Admin_Window.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Users_Window\Laborant_Researcher_Window.xaml.cs">
+      <DependentUpon>Laborant_Researcher_Window.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Users_Window\Laborant_Window.xaml.cs">
+      <DependentUpon>Laborant_Window.xaml</DependentUpon>
+    </Compile>
     <Page Include="Authorization.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -67,6 +133,22 @@
       <DependentUpon>Authorization.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Users_Window\Accountant_Window.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Users_Window\Admin_Window.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Users_Window\Laborant_Researcher_Window.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Users_Window\Laborant_Window.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -86,6 +168,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="DB_Laboratory.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DB_Laboratory.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DB_Laboratory.edmx.diagram">
+      <DependentUpon>DB_Laboratory.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -95,18 +185,36 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resourses\loader %281%29.gif" />
+    <Resource Include="Resourses\loader.gif" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resourses\logo.ico" />
     <Resource Include="Resourses\logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resourses\free-icon-eye-8692940.png" />
+    <Resource Include="Resourses\visible_pas.png" />
     <Resource Include="Resourses\invisible_pas.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="free-icon-eye-8692940.png" />
+    <Content Include="DB_Laboratory.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DB_Laboratory.edmx</DependentUpon>
+      <LastGenOutput>DB_Laboratory.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DB_Laboratory.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DB_Laboratory.edmx</DependentUpon>
+      <LastGenOutput>DB_Laboratory.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resourses\User_images\Accountant.jpeg" />
+    <Resource Include="Resourses\User_images\Administrator.png" />
+    <Resource Include="Resourses\User_images\Laborant_1.jpeg" />
+    <Resource Include="Resourses\User_images\Llaborant_2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
